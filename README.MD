@@ -1,4 +1,4 @@
-# Animals DB 
+# Animals API with Postgresql
 
 ## API with Postgresql to store and manage an animal database
 
