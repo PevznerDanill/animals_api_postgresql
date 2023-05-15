@@ -1,16 +1,21 @@
 from rest_framework import serializers
 from .models import Shelter, Animal
-from app_users.serializers import UserShortSerializer
-from datetime import date
 
 
 class CurrentShelterDefault(serializers.CurrentUserDefault):
+    """
+    Creates a current serializer value for User.shelter field.
+    """
 
     def __call__(self, serializer_field):
         return serializer_field.context['request'].user.shelter
 
 
 class ShelterShortSerializer(serializers.ModelSerializer):
+    """
+    A serializer for the short information about the shelter.
+    Used in AnimalListSerializer and ShelterListAPIView.
+    """
 
     class Meta:
         model = Shelter
@@ -18,6 +23,10 @@ class ShelterShortSerializer(serializers.ModelSerializer):
 
 
 class AnimalListSerializer(serializers.ModelSerializer):
+    """
+    A serializer for the representation of an object in a list of Animal instances.
+    Used in AnimalListAPIView.
+    """
 
     class Meta:
         model = Animal
@@ -27,6 +36,9 @@ class AnimalListSerializer(serializers.ModelSerializer):
 
 
 class AnimalCreateSerializer(serializers.ModelSerializer):
+    """
+    A serializer for the creation of a new Animal instance.
+    """
 
     class Meta:
         model = Animal
@@ -37,12 +49,11 @@ class AnimalCreateSerializer(serializers.ModelSerializer):
             'shelter': {'read_only': True}
         }
 
-    # owner = serializers.PrimaryKeyRelatedField(read_only=True)
-    # shelter = serializers.PrimaryKeyRelatedField(read_only=True)
-
-
 
 class AnimalDetailSerializer(serializers.ModelSerializer):
+    """
+    A serializer for the detail representation of the retrieved Animal instance.
+    """
 
     class Meta:
         model = Animal

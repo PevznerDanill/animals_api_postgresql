@@ -1,0 +1,1 @@
+[{"model": "app_animals.shelter", "pk": 1, "fields": {"title": "Dog's shelter"}}, {"model": "app_animals.shelter", "pk": 2, "fields": {"title": "Cat's shelter"}}, {"model": "app_animals.shelter", "pk": 3, "fields": {"title": "Bird's shelter"}}]

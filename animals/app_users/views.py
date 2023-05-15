@@ -1,3 +1,4 @@
+from django.http import HttpRequest
 from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
@@ -7,7 +8,20 @@ from rest_framework import status
 
 
 @api_view(["POST"])
-def ask_for_upgrade(request):
+def ask_for_upgrade(request: HttpRequest) -> Response:
+    """
+    An api view function to request the upgrade of a user's status.
+    First checks if the user is authenticated.
+    If he is, checks if he has already asked for an upgrade.
+    If he has not, checks if the post data contains the email of the user of it is saved
+    in the database.
+    If there is a user email, accepts the request: sends an email (send_email_to_upgrade() function)
+    to the admin and returns a 202 Response.
+    If the user has already asked for an upgrade, returns a 208 Response.
+    If the user has not provided his email, returns a 400 Response.
+    If the user is not authenticated, returns a 401 Response.
+
+    """
     if request.user.is_authenticated:
         cur_user = request.user
         if 'email' in request.data or cur_user.email:

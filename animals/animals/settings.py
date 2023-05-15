@@ -11,7 +11,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
-import os
+import certifi
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -41,6 +42,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'djoser',
+    'django_filters',
     'app_animals.apps.AppAnimalsConfig',
     'app_users.apps.AppUsersConfig',
 ]
@@ -153,10 +155,10 @@ DJOSER = {
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_USE_TLS = False
+EMAIL_HOST = 'smtp.your-email-host-smtp.com'
+EMAIL_USE_TLS = True
 EMAIL_PORT = 465
-EMAIL_USE_SSL = True
-EMAIL_HOST_USER = 'service.bot.notifier@gmail.com'
-EMAIL_HOST_PASSWORD = 'gyoncwiaesqwlaou'
-DEFAULT_FROM_EMAIL = 'service.bot.notifier@gmail.com'
+EMAIL_USE_SSL = False
+EMAIL_HOST_USER = 'your-host-email@email.com'
+EMAIL_HOST_PASSWORD = 'your_account_application_password'
+DEFAULT_FROM_EMAIL = 'your-host-email@email.com'
